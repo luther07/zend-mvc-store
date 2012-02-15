@@ -1,12 +1,12 @@
 <?php
 
-class ErrorController extends Zend_Controller_Action
+class Storefront_ErrorController extends Zend_Controller_Action
 {
 
     public function errorAction()
     {
 
-        $errors = $this->getParam('error_handler');
+        $errors = $this->_getParam('error_handler');
 
         switch ($errors->type) {
 
@@ -31,7 +31,7 @@ class ErrorController extends Zend_Controller_Action
         }
 
         // conditionally display exceptions
-        if ($this->getInvokedArg('displayExceptions') == true) {
+        if ($this->getInvokeArg('displayExceptions') == true) {
             $this->view->exception = $errors->exception;
         }
 
@@ -41,8 +41,8 @@ class ErrorController extends Zend_Controller_Action
 
     public function getLog()
     {
-        $bootstrap = $this->getInvokedArg('bootstrap');
-        if (!bootstrap->hasPluginResource('Log')) {
+        $bootstrap = $this->getInvokeArg('bootstrap');
+        if (!$bootstrap->hasPluginResource('Log')) {
             return false;
         }
         $log = $bootstrap->getResource('Log');
