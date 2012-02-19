@@ -36,6 +36,7 @@ class Storefront_ErrorController extends Zend_Controller_Action
         }
 
         $this->view->request = $errors->request;
+        Zend_Registry::get('log')->info('Bootstrap ' . __METHOD__);
 
     }
 
@@ -46,6 +47,7 @@ class Storefront_ErrorController extends Zend_Controller_Action
             return false;
         }
         $log = $bootstrap->getResource('Log');
+        Zend_Registry::get('log')->info('Bootstrap ' . __METHOD__);
         return $log;
     }
 
