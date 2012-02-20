@@ -9,13 +9,14 @@ protected function _initLogging()
     {
         $this->bootstrap('frontController');
         $logger = new Zend_Log();
-        $writer = 'production' == $this->getEnvironment() ?
-            new Zend_Log_Writer_Stream(APPLICATION_PATH . '/../data/logs/app.log'):
-            new Zend_Log_Writer_Firebug();
+        if (APPLICATION_ENV == 'production')
+            $writer = new Zend_Log_Writer_Stream(APPLICATION_PATH . '/../data/logs/app.log');
+        else
+            $writer = new Zend_Log_Writer_Firebug();
         $logger->addWriter($writer);
         if ('production' == $this->getEnvironment()) {
-        $filter = new Zend_Log_Filter_Priority(Zend_Log::CRIT);
-        $logger->addFilter($filter);
+            $filter = new Zend_Log_Filter_Priority(Zend_Log::CRIT);
+            $logger->addFilter($filter);
         }
         Zend_Registry::set('log', $logger);
     }
