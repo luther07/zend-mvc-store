@@ -5,7 +5,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     public $frontController;
 
-protected function _initLogging()
+    protected function _initLogging()
     {
         $this->bootstrap('frontController');
         $logger = new Zend_Log();
@@ -19,6 +19,23 @@ protected function _initLogging()
             $logger->addFilter($filter);
         }
         Zend_Registry::set('log', $logger);
+    }
+
+    protected function _initDefaultModuleAutoloader()
+    {
+        Zend_Registry::get('log')->info('Bootstrap ' . __METHOD__);
+        $this->_resourceLoader = new Zend_Application_Module_Autoloader(array(
+            'namespace' => 'Storefront',
+            'basePath' => APPLICATION_PATH .
+            '/modules/storefront'));
+        $this->_resourceLoader->addResourceTypes(array(
+            'modelResource' => array(
+            'path' => 'models/resources',
+            'namespace' => 'Resource'),
+            'service' => array(
+            'path' => 'services',
+            'namespace' => 'Service')
+            ));
     }
 
     protected function _initLocale()
@@ -76,6 +93,5 @@ protected function _initLogging()
                  ->setProfiler($profiler);
         }
     }
-
 }
 
