@@ -1,6 +1,7 @@
 <?php
 
-class storefront{
+class Storefront_Model_Catalog extends SF_Model_Abstract{
+
     public function getCategoriesByParentId($parentID) {
         $parentID = (int) $parentID;
         return $this->getResource('Category')
@@ -45,7 +46,7 @@ class storefront{
                       $order);
     }
 
-    public function getCategoryChildrenIds($categoryId, recursive=false) {
+    public function getCategoryChildrenIds($categoryId, $recursive=false) {
         $categories = $this->getCategoriesByParentId($categoryId);
         $cats = array();
         foreach ($categories as $category) {

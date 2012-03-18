@@ -93,5 +93,35 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                  ->setProfiler($profiler);
         }
     }
+
+    protected function _initRoutes()
+    {
+        Zend_Registry::get('log')->info('Bootstrap ' . __METHOD__);
+        $this->bootstrap('frontController');
+        $router = $this->frontController->getRouter();
+        // catalog category product route
+        $route = new Zend_Controller_Router_Route(
+                     'catalog/:categoryIdent/:productIdent', array(
+                         'action' => 'view',
+                         'controller' => 'catalog',
+                         'module' => 'storefront',
+                         'categoryIdent' => ''),
+                         array('categoryIdent' => '[a-zA-Z-_0-9]+',
+                               'productIdent' => '[a-zA-Z-_0-9]+')
+        );
+        $router->addRoute('catalog_category_product', $route);
+        // catalog category route
+        $route = new Zend_Controller_Router_Route(
+                     'catalog/:categoryIdent/:page',
+                     array('action' => 'index',
+                           'controller' => 'catalog',
+                           'module' => 'storefront',
+                           'categoryIdent' => '',
+                           'page' => 1),
+                           array('categoryIdent' => '[a-zA-Z-_0-9]+',
+                                 'page' => '\d+')
+        );
+        $router->addRoute('catalog_category', $route);
+    }
 }
 

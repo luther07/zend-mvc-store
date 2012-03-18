@@ -25,7 +25,7 @@ class SF_Plugin_Action extends Zend_Controller_Plugin_Abstract
                 $stack = new Zend_Controller_Plugin_ActionStack();
                 $front->registerPlugin($stack);
             } else {
-                $stack = $front->getPlugin('ActionStack');
+                $stack = $front->getPlugin('Zend_Controller_Plugin_ActionStack');
             }
             $this->_stack = $stack;
         }
