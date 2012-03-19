@@ -5,6 +5,8 @@ class Storefront_ErrorController extends Zend_Controller_Action
 
     public function errorAction()
     {
+        Zend_Registry::get('log')->info('ErrorController ' . __METHOD__);
+
 
         $errors = $this->_getParam('error_handler');
 
@@ -26,8 +28,17 @@ class Storefront_ErrorController extends Zend_Controller_Action
                 break;
             default:
                 //application error
-                $this->getResponse()->setHttpResponseCode(500);
-                $this->view->message = 'Application error';
+                //$this->getResponse()->setHttpResponseCode(500);
+                //$this->view->message = 'Application error';
+                //new
+                // application error; display error page, but don't change status code
+                // Log the exception
+                $exception = $errors->exception ;
+                $log = new Zend_Log(new Zend_Log_Writer_Stream(
+                           '/tmp/applicationException.log')
+                );
+                $log->debug($exception->getMessage() . "\n" .
+                            $exception->getTraceAsString()) ;
                 break;
         }
 
@@ -42,7 +53,7 @@ class Storefront_ErrorController extends Zend_Controller_Action
         }
 
         $this->view->request = $errors->request;
-        Zend_Registry::get('log')->info('Bootstrap ' . __METHOD__);
+        Zend_Registry::get('log')->info('ErrorController ' . __METHOD__);
 
     }
 
@@ -53,7 +64,7 @@ class Storefront_ErrorController extends Zend_Controller_Action
             return false;
         }
         $log = $bootstrap->getResource('Log');
-        Zend_Registry::get('log')->info('Bootstrap ' . __METHOD__);
+        Zend_Registry::get('log')->info('ErrorController ' . __METHOD__);
         return $log;
     }
 
