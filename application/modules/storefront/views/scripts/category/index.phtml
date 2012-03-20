@@ -1,6 +1,9 @@
 <div class="sub-nav">
 <h3>select <span>category</span></h3>
     <ul>
+        <!-- The category view script is rendered by the Category Controller. -->
+        <!-- This view iterates over the categories property that contains Storefront_Resource_Category_Item instances. -->>
+        <!-- The view creates the top-level category menu as it iterates. -->
         <? foreach ($this->categories as $category): ?>
         <li><a href="<?=$this->url(array('categoryIdent' => $category->ident), 'catalog_category', true );?>"><?=$category->name; ?></a></li>
         <? endforeach; ?>

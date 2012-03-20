@@ -1,10 +1,6 @@
 <?php
 
 //I don't know if our autoloader will automatically load classes that Zend_Db_Table needs (dependencies)
-if (!class_exists('Storefront_Resource_Category_Item')) {
-    require_once dirname(__FILE__) . '/Category/Item.php' ;
-}
-
 
 class Storefront_Resource_Category extends SF_Model_Resource_Db_Table_Abstract implements Storefront_Resource_Category_Interface {
     protected $_name = 'category' ;

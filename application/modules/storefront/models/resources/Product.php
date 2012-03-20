@@ -1,12 +1,6 @@
 <?php
 
 //I don't know if our autoloader will automatically load classes that Zend_Db_Table needs (dependencies)
-if (!class_exists('Storefront_Resource_ProductImage')) {
-    require_once dirname(__FILE__) . '/ProductImage.php' ;
-}
-if (!class_exists('Storefront_Resource_Product_Item')) {
-    require_once dirname(__FILE__) . '/Product/Item.php' ;
-}
 
 class Storefront_Resource_Product extends SF_Model_Resource_Db_Table_Abstract implements Storefront_Resource_Product_Interface {
     protected $_name = 'product' ;

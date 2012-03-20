@@ -12,9 +12,7 @@ class Storefront_CatalogController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $cident = $this->_getParam('categoryIdent', 0) ;
         Zend_Registry::get('log')->info('CatalogController ' . __METHOD__) ;
-        Zend_Registry::get('log')->info('CatalogController with  categoryIdent arg ' . $cident ) ;
         $products = $this->_catalogModel->getProductsByCategory(
             $this->_getParam('categoryIdent', 0),
             $this->_getParam('page', 1), array('name')
@@ -32,13 +30,11 @@ class Storefront_CatalogController extends Zend_Controller_Action
                      ->getCategoriesByParentId($category->categoryId
                        );
         $this->getBreadcrumb($category);
-        Zend_Registry::get('log')->info('retrn from getBreadcrubm') ;
         $this->view->assign(array(
                          'category' => $category,
                          'subCategories' => $subs,
                          'products' => $products)
                      );
-        Zend_Registry::get('log')->info('last line of indexAction') ;
     }
 
     public function viewAction()
@@ -63,6 +59,5 @@ class Storefront_CatalogController extends Zend_Controller_Action
         Zend_Registry::get('log')->info('CatalogController ' . __METHOD__);
         $this->view->bread = $this->_catalogModel
                                   ->getParentCategories($category);
-        Zend_Registry::get('log')->info('super breadcrumbs') ;
     }
 }
