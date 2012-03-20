@@ -30,7 +30,7 @@
     <div id="contentWrap" class="clearfix">
         <div class="left categorylist">
             <!-- To render top-level menu, echo the Response Segment that we created in the Category Controller -->
-            <!-- Is this operation being performed in two places? -->
+            <!-- per debug dump below, categoryMain is outputting duplicate data -->
             <?= $this->layout()->categoryMain; ?>
 
             <!-- check if the subCategory's view property is set -->
