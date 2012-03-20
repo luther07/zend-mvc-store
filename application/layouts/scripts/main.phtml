@@ -44,6 +44,8 @@
                 </ul>
             </div> 
             <? endif; ?>
+            <!-- this dump below shows that categoryMain is outputting duplicate data -->
+            <? Zend_Debug::dump($this->layout()->categoryMain, 'SERVER VARS', true); ?>
 
         </div>
         <div class="content left">
