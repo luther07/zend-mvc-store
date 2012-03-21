@@ -1,9 +1,11 @@
-# I'm building a storefront application using PHP and Zend per the book, *Zend Framework 1.8 Web Application Development*, by Keith Pope.
+# A PHP web application with Zend.
 
-## Added logging to the application:
+## I'm building a storefront application using PHP and Zend per the book, *Zend Framework 1.8 Web Application Development*, by Keith Pope.
+
+### Added logging to the application:
 * write to a log file for production (requires correct permissions on the log file)
 * otherwise write to browser Firebug plugin
 
-## Category hierarchy implemented.
+### Category hierarchy implemented.
 
-## No open issues currently.
+### No open issues currently.
