@@ -30,9 +30,7 @@
     <div id="contentWrap" class="clearfix">
         <div class="left categorylist">
             <!-- To render top-level menu, echo the Response Segment that we created in the Category Controller -->
-            <!-- per debug dump below, categoryMain is outputting duplicate data -->
             <?= $this->layout()->categoryMain; ?>
-
             <!-- check if the subCategory's view property is set -->
             <? if (0 < count($this->subCategories)):?>
             <div class="sub-nav">
@@ -44,10 +42,8 @@
                 </ul>
             </div> 
             <? endif; ?>
-            <!-- this dump below shows that categoryMain is outputting duplicate data -->
-            <? Zend_Debug::dump($this->layout()->categoryMain, 'SERVER VARS', true); ?>
-
         </div>
+
         <div class="content left">
             <?= $this->layout()->content ?> 
        </div>
