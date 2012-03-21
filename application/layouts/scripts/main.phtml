@@ -31,6 +31,7 @@
         <div class="left categorylist">
             <!-- To render top-level menu, echo the Response Segment that we created in the Category Controller -->
             <?= $this->layout()->categoryMain; ?>
+
             <!-- check if the subCategory's view property is set -->
             <? if (0 < count($this->subCategories)):?>
             <div class="sub-nav">
