@@ -1,8 +1,5 @@
 <?php
-//$path1 = '/home/mjohns07/zend-mvc-store/library/SF/' ;
-//$path2 = '/home/mjohns07/zend-mvc-store/library/SF/Plugin' ;
-//$path3 = /home/mjohns07/zend-mvc-store/library/SF/Model/Resource/Db/Table/Row/' ;
-//set_include_path(get_include_path() . PATH_SEPARATOR . $path1 . PATH_SEPARATOR . $path2 . PATH_SEPARATOR . $path3) ;
+
 $paths = array(
 get_include_path(),
 dirname(__FILE__) . '../library'
